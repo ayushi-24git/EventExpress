@@ -1,24 +1,24 @@
 # EventExpress
 This assignment fulfils the following non-functional requirements:
 
-####Durability:
+### Durability:
 Ingested events are retained in the system even if the system crashes or until they are delivered or exhaustively retried.
 We are using the JedisPool to manage connections to Redis. We are indeed storing events in Redis.
 
 For each event, we have stored the retry state ie the number of retries. This allows the system to resume retries
 even after a crash or restart.
 
-####At-least-once Delivery:
+### At-least-once Delivery:
 Delivery to destinations might fail for any reason. We have implemented retry strategy to ensure at-least-once delivery.
 
-####Retry Backoff and Limit:
+### Retry Backoff and Limit:
 Messages should be retried using a backoff algorithm. After a certain number of delivery attempts, the event is drained from the system
 using exponential backoff strategy.
 
-####Maintaining Order:
+### Maintaining Order:
 Events are in a FIFO (First-In-First-Out) method for each destination by using Java's BlockingQueue.
 
-####Delivery Isolation:
+### Delivery Isolation:
 As each destination's event processing is isolated in a separate thread, issues related to delays or failures with
 event delivery for one destination will not affect the processing of events for other destinations. Delays or failures
 in one thread do not block or impact the processing of events in other threads, maintaining isolation between destination deliveries.

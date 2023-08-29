@@ -64,3 +64,9 @@ multiple events are being processed and delivered simultaneously.
 
 In summary, the system demonstrates a basic implementation of event ingestion and delivery, with emphasis on
 retry strategies, connection management, and simulation of potential delivery failures.
+
+# How to run?
+
+- Start a Redis server either using Docker or by installing it locally. docker run -d -p 6379:6379 --name redis-container redis
+- Build Java code
+- Simulate sending events as http POST :8080/events userId=SAMPLE_USER payload=SAMPLE_PAYLOAD
